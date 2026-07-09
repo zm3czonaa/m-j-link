@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>zm3czonaa</title>
+    <link rel="icon" type="image/png" href="assets/ikonka.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="is-waiting">
+    <video class="background-video" muted loop playsinline preload="auto">
+      <source src="assets/background.mp4" type="video/mp4" />
+    </video>
+
+    <audio id="music" loop preload="auto">
+      <source src="assets/twentythree-queen-st.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="playlist-audio" preload="auto">
+      <source src="piosenki/piosenka1.mp3" type="audio/mpeg" />
+    </audio>
+
+    <button class="audio-gate" type="button" aria-label="Enter ZM3CZONAA">
+      <span>ENTER</span>
+    </button>
+
+    <div class="money-rain" aria-hidden="true"></div>
+
+    <main class="scene" aria-label="ZM3CZONAA links">
+      <h1>ZM3CZONAA</h1>
+
+      <div class="content-stack">
+      <div class="youtube-stats" aria-label="YouTube channel statistics">
+        <img class="youtube-profile-image" src="assets/profilowe.jpg" alt="" />
+        <span class="youtube-profile-copy">
+          <span class="youtube-profile-name">zm3czonaa</span>
+          <span class="youtube-profile-subs"><span class="youtube-stats-count" id="youtube-subs-count">loading</span> subscribers</span>
+          <span class="youtube-profile-views"><span class="youtube-stats-count" id="youtube-views-count">loading</span> views</span>
+        </span>
+      </div>
+      <nav class="links" aria-label="Social links">
+        <!-- Replace the # values below with your final profile links. -->
+        <a class="link-button discord" href="https://discord.gg/xxpYerkru" target="_blank" rel="noreferrer" aria-label="Discord">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19.1 4.9A16.6 16.6 0 0 0 15 3.6l-.5 1c-1.6-.2-3.1-.2-4.6 0l-.5-1c-1.5.3-2.8.7-4.1 1.3C2.7 8.7 2 12.4 2.3 16.1a16.9 16.9 0 0 0 5 2.5l1.1-1.8c-.6-.2-1.1-.5-1.6-.8l.4-.3c3.1 1.4 6.4 1.4 9.4 0l.4.3c-.5.3-1 .6-1.6.8l1.1 1.8a16.6 16.6 0 0 0 5-2.5c.4-4.3-.7-7.9-2.4-11.2ZM8.7 13.9c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z" />
+          </svg>
+        </a>
+
+        <a class="link-button youtube" href="https://www.youtube.com/@zm3czonaa" target="_blank" rel="noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21.6 7.2c-.2-.9-.9-1.6-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8c.2.9.9 1.6 1.8 1.8 1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z" />
+          </svg>
+        </a>
+
+        <a class="link-button tiktok" href="https://www.tiktok.com/@zemstabedzieslotka" target="_blank" rel="noreferrer" aria-label="TikTok">
+          <span class="tiktok-app-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path class="tiktok-cyan" d="M17 6.1c.9 1 2.1 1.6 3.5 1.7V11c-1.3 0-2.4-.3-3.5-1v5.2c0 3-2.4 5.5-5.5 5.5A5.5 5.5 0 0 1 9.8 9.9v3.4a2.2 2.2 0 1 0 1.7 2.1V3.3H17v2.8Z" />
+              <path class="tiktok-pink" d="M18.3 7.4c.9 1 2.1 1.6 3.5 1.7v3.2c-1.3 0-2.4-.3-3.5-1v5.2c0 3-2.4 5.5-5.5 5.5A5.5 5.5 0 0 1 11.1 11.2v3.4a2.2 2.2 0 1 0 1.7 2.1V4.6h5.5v2.8Z" />
+              <path class="tiktok-main" d="M15.8 4.8c.9 1 2.1 1.6 3.5 1.7v3.2c-1.3 0-2.4-.3-3.5-1v5.2c0 3-2.4 5.5-5.5 5.5a5.5 5.5 0 0 1-1.7-10.8V12a2.2 2.2 0 1 0 1.7 2.1V2h5.5v2.8Z" />
+            </svg>
+          </span>
+        </a>
+
+        <a class="link-button custom" href="https://zm3czonaa.github.io/portfolio/#portfolio" target="_blank" rel="noreferrer" aria-label="Custom link">
+          <img src="assets/favicon.png" alt="" />
+        </a>
+      </nav>
+
+      <section class="playlist-panel" aria-label="Favorite songs">
+        <div class="playlist-header">
+          <span class="playlist-title">zm3czonaa top 10</span>
+          <span class="spotify-badge" aria-label="Spotify">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" />
+              <path d="M7 9.3c3.5-1.1 6.7-.8 9.8 1" />
+              <path d="M7.7 12.1c2.8-.8 5.3-.6 7.8.8" />
+              <path d="M8.2 14.7c2-.6 3.9-.4 5.8.6" />
+            </svg>
+          </span>
+        </div>
+        <ol class="playlist" id="playlist">
+          <li>
+            <button class="track-button" type="button" data-index="0" data-src="piosenki/piosenka1.mp3" data-title="Dziewczyna">
+              <span class="track-number">1</span>
+              <img class="track-cover" src="miniatury/miniaturka1.png" alt="" />
+              <span class="track-info"><span class="track-title">Dziewczyna</span><span class="track-artist">Yeat</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="1" data-src="piosenki/piosenka2.mp3" data-title="Queen St">
+              <span class="track-number">2</span>
+              <img class="track-cover" src="miniatury/miniaturka2.png" alt="" />
+              <span class="track-info"><span class="track-title">Queen St</span><span class="track-artist">twentythree</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="2" data-src="piosenki/piosenka3.mp3" data-title="GTA">
+              <span class="track-number">3</span>
+              <img class="track-cover" src="miniatury/miniaturka3.png" alt="" />
+              <span class="track-info"><span class="track-title">GTA</span><span class="track-artist">Rarin</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="3" data-src="piosenki/piosenka4.mp3" data-title="Kills">
+              <span class="track-number">4</span>
+              <img class="track-cover" src="miniatury/miniaturka4.png" alt="" />
+              <span class="track-info"><span class="track-title">Kills</span><span class="track-artist">Chief Keef</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="4" data-src="piosenki/piosenka5.mp3" data-title="Money Tw&euml;rk">
+              <span class="track-number">5</span>
+              <img class="track-cover" src="miniatury/miniaturka5.png" alt="" />
+              <span class="track-info"><span class="track-title">Money Tw&euml;rk</span><span class="track-artist">Yeat</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="5" data-src="piosenki/piosenka6.mp3" data-title="Made It On Our Own">
+              <span class="track-number">6</span>
+              <img class="track-cover" src="miniatury/miniaturka6.png" alt="" />
+              <span class="track-info"><span class="track-title">Made It On Our Own</span><span class="track-artist">Yeat, EsDeeKid</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="6" data-src="piosenki/piosenka7.mp3" data-title="Piękny Świat">
+              <span class="track-number">7</span>
+              <img class="track-cover" src="miniatury/miniaturka7.jpg" alt="" />
+              <span class="track-info"><span class="track-title">Piękny Świat</span><span class="track-artist">YoungBoy Never Broke Again</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="7" data-src="piosenki/piosenka8.mp3" data-title="Spokojnie">
+              <span class="track-number">8</span>
+              <img class="track-cover" src="miniatury/miniaturka8.png" alt="" />
+              <span class="track-info"><span class="track-title">SPOKOJNE</span><span class="track-artist">Yeat</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="8" data-src="piosenki/piosenka9.mp3" data-title="Złote Tarasy">
+              <span class="track-number">9</span>
+              <img class="track-cover" src="miniatury/miniaturka9.jpg" alt="" />
+              <span class="track-info"><span class="track-title">Złote Tarasy</span><span class="track-artist">YoungBoy Never Broke Again</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li>
+            <button class="track-button" type="button" data-index="9" data-src="piosenki/piosenka10.mp3" data-title="Skolim">
+              <span class="track-number">10</span>
+              <img class="track-cover" src="miniatury/miniaturka10.png" alt="" />
+              <span class="track-info"><span class="Skolim"></span><span class="Skolim">Skolim</span></span>
+              <span class="track-play" aria-hidden="true"></span>
+            </button>
+          </li>
+        </ol>
+        <div class="playlist-footer">
+          <p class="currently-playing">currently playing: <span id="current-track-name">Jus b&euml;tter</span></p>
+          <div class="playlist-controls" aria-label="Playlist controls">
+            <button class="playlist-control previous-track" type="button" aria-label="Previous song">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+              </svg>
+            </button>
+            <button class="playlist-control next-track" type="button" aria-label="Next song">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m13 7 6 5-6 5V7ZM5 7l6 5-6 5V7Z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <p class="credit">made by zm3czonaa &amp; zm3czonaa studio</p>
+
+    <script src="script.js"></script>
+  </body>
+</html>

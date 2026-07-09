@@ -1,0 +1,622 @@
+:root {
+  --icon-size: clamp(48px, 11vw, 74px);
+  --gap: clamp(10px, 2.4vw, 18px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #050505;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  transition: filter 420ms ease, transform 420ms ease;
+}
+
+body.is-waiting .background-video {
+  filter: blur(24px) saturate(1.08);
+  transform: scale(1.08);
+}
+
+body.is-waiting::before {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.06) 42%, rgba(0, 0, 0, 0.18));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.2) 42%, rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+.audio-gate {
+  position: fixed;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  top: var(--gate-top, 30vh);
+  left: 50%;
+  width: auto;
+  height: auto;
+  border: 0;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: opacity 260ms ease, visibility 260ms ease;
+}
+
+.audio-gate span {
+  padding: 18px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  font-size: clamp(1.1rem, 4vw, 1.7rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+body.is-waiting .audio-gate span {
+  box-shadow: 0 22px 74px rgba(0, 0, 0, 0.62), 0 0 34px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.audio-gate.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.money-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  perspective: 900px;
+  pointer-events: none;
+}
+
+.money-icon {
+  position: absolute;
+  top: -72px;
+  left: var(--money-left);
+  font-size: var(--money-size);
+  opacity: 0.86;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.36));
+  transform-style: preserve-3d;
+  animation: money-fall var(--money-duration) linear forwards;
+}
+
+@keyframes money-fall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  50% {
+    transform: translate3d(var(--money-drift), 48vh, 90px) rotateX(180deg) rotateY(220deg) rotateZ(18deg);
+  }
+
+  100% {
+    transform: translate3d(calc(var(--money-drift) * -0.35), 112vh, -80px) rotateX(360deg) rotateY(520deg) rotateZ(-24deg);
+  }
+}
+
+.credit {
+  position: fixed;
+  left: 12px;
+  bottom: 10px;
+  z-index: 3;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.68rem, 2vw, 0.82rem);
+  font-weight: 750;
+  letter-spacing: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  transition: filter 420ms ease, opacity 420ms ease;
+}
+
+.scene {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: minmax(86px, 18vh) 1fr minmax(70px, 14vh);
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+  padding: clamp(18px, 4vw, 42px);
+  transition: filter 420ms ease, opacity 420ms ease;
+}
+
+body.is-waiting .scene,
+body.is-waiting .credit {
+  filter: blur(12px);
+  opacity: 0.42;
+  pointer-events: none;
+  user-select: none;
+}
+
+h1 {
+  align-self: start;
+  margin: 0;
+  color: #fff;
+  background: linear-gradient(180deg, #fff 8%, #f4f4f4 45%, #bcbcbc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: clamp(2.4rem, 8vw, 6.2rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.9;
+  text-align: center;
+  text-shadow: 0 0 22px rgba(255, 255, 255, 0.34), 0 8px 34px rgba(0, 0, 0, 0.54);
+  -webkit-text-fill-color: transparent;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.content-stack {
+  align-self: center;
+  display: grid;
+  gap: clamp(10px, 2vh, 16px);
+  justify-items: center;
+  width: min(92vw, 540px);
+}
+
+.youtube-stats {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  width: min(100%, calc((var(--icon-size) * 6) + (var(--gap) * 5)));
+  min-height: 104px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(8, 8, 10, 0.24);
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+}
+
+.youtube-profile-image {
+  flex: 0 0 auto;
+  width: clamp(72px, 14vw, 86px);
+  height: clamp(72px, 14vw, 86px);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  object-fit: cover;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+}
+
+.youtube-profile-copy {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.youtube-profile-name,
+.youtube-profile-subs,
+.youtube-profile-views,
+.youtube-stats-count {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.youtube-profile-name {
+  color: #fff;
+  font-size: clamp(1.28rem, 4vw, 1.58rem);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.youtube-profile-subs,
+.youtube-profile-views {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.94rem, 2.8vw, 1.08rem);
+  font-weight: 800;
+}
+
+.youtube-stats-count {
+  color: #fff;
+  font-weight: 950;
+  text-shadow: 0 0 14px rgba(255, 39, 55, 0.32);
+}
+
+.playlist-panel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.playlist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 8px;
+}
+
+.playlist-title {
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.spotify-badge {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.spotify-badge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.spotify-badge circle {
+  fill: #1ed760;
+}
+
+.spotify-badge path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.playlist {
+  display: grid;
+  gap: 5px;
+  max-height: clamp(176px, 34vh, 290px);
+  margin: 0;
+  padding: 0 8px 8px;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: rgba(255, 255, 255, 0.48) transparent;
+  scrollbar-width: thin;
+}
+
+.track-button {
+  display: grid;
+  grid-template-columns: 24px 42px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  text-align: left;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.track-button:hover,
+.track-button:focus-visible,
+.track-button.is-active {
+  background: rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+.track-button:active {
+  transform: scale(0.99);
+}
+
+.track-number {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.track-cover {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  object-fit: cover;
+}
+
+.track-info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.track-title,
+.track-artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-title {
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.track-artist {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.track-play {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+}
+
+.track-play::before {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-block: 6px solid transparent;
+  border-left: 9px solid #fff;
+}
+
+.track-button.is-playing .track-play::before {
+  width: 8px;
+  height: 10px;
+  margin-left: 0;
+  border: 0;
+  background: linear-gradient(90deg, #fff 0 35%, transparent 35% 65%, #fff 65% 100%);
+}
+
+.playlist-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 10px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.currently-playing {
+  min-width: 0;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.82rem;
+  font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#current-track-name {
+  color: #fff;
+}
+
+.playlist-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.playlist-control {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.playlist-control:hover,
+.playlist-control:focus-visible {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.playlist-control svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.link-button {
+  display: grid;
+  place-items: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(8, 8, 10, 0.24);
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  transform: translateY(0) scale(1);
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.link-button:hover {
+  border-color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.42);
+  transform: translateY(-4px) scale(1.035);
+}
+
+.link-button:focus-visible {
+  border-color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.42);
+  outline: 3px solid rgba(255, 255, 255, 0.86);
+  outline-offset: 5px;
+  transform: translateY(-4px) scale(1.035);
+}
+
+.link-button svg {
+  width: 54%;
+  height: 54%;
+  fill: currentColor;
+}
+
+.discord {
+  color: #7688ff;
+}
+
+.discord:hover {
+  color: #ffffff;
+  background: rgba(88, 101, 242, 0.48);
+}
+
+.youtube {
+  color: #ff2737;
+}
+
+.youtube:hover {
+  color: #ffffff;
+  background: rgba(255, 0, 51, 0.52);
+}
+
+.tiktok:hover {
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(37, 244, 238, 0.42), rgba(255, 0, 80, 0.46)),
+    rgba(255, 255, 255, 0.12);
+}
+
+.tiktok-app-icon {
+  display: grid;
+  place-items: center;
+  width: 72%;
+  height: 72%;
+  border-radius: 23%;
+  background: #000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.tiktok-app-icon svg {
+  width: 70%;
+  height: 70%;
+}
+
+.tiktok-cyan {
+  fill: #25f4ee;
+  transform: translate(-1px, -1px);
+}
+
+.tiktok-pink {
+  fill: #ff1f5f;
+  transform: translate(1px, 1px);
+}
+
+.tiktok-main {
+  fill: #fff;
+}
+
+.custom img {
+  width: 54%;
+  height: 54%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.44));
+}
+
+.soundcloud {
+  color: #3da8ff;
+}
+
+.sc-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 420px) {
+  .scene {
+    grid-template-rows: minmax(76px, 17vh) 1fr minmax(58px, 12vh);
+    padding-inline: 14px;
+  }
+
+  .links {
+    width: 100%;
+  }
+
+  .content-stack {
+    width: 100%;
+  }
+
+  .playlist {
+    max-height: 30vh;
+  }
+
+  .track-button {
+    grid-template-columns: 20px 36px minmax(0, 1fr) 26px;
+    gap: 8px;
+  }
+
+  .track-cover {
+    width: 36px;
+    height: 36px;
+  }
+
+  .track-title {
+    font-size: 0.82rem;
+  }
+
+  .track-artist {
+    font-size: 0.72rem;
+  }
+}
